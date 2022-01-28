@@ -1,0 +1,43 @@
+﻿@model ProdutoAddEditVM
+@{
+    ViewBag.Title = "Adicionar";
+    ViewBag.SubTitle = "Adicionar novo Produto";
+}
+
+@if(!ViewData.ModelState.IsValid)
+            {
+                <div>
+                    Deu ruim aí.
+                </div>
+            }
+
+<form method="post">
+    <div class="mb-3">
+        <label for="txtNome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="txtNome" name="Nome" value="@Model?.Nome">
+    </div>
+
+    <div class="mb-3">
+        <label for="txtPreco" class="form-label">Preço</label>
+        <input type="text" class="form-control" id="txtPreco" name="Preco" value="@Model?.Preco">
+    </div>
+
+
+    <div class="mb-3">
+        <label for="txtPreco" class="form-label">Categoria</label>
+        <select class="form-select" name="categoriaid">
+            <option value="">Selecione ...</option>
+             @foreach (var cat in Model.Categorias)
+            {
+                <option value="@cat.Value" selected="@(Model?.CategoriaId.ToString() == cat.Value?"selected":null)">@cat.Text</option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <a class="btn btn-outline-warning" href="@Url.Action("Index", "Produtos")">Voltar</a>
+        <button class="btn btn-outline-secondary" type="submit">Salvar</button>
+    </div>
+
+
+</form>

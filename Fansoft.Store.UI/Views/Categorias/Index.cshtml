@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CategoriaIndexVM>
+@{
+    ViewBag.Title = "Listagem de Categorias";
+    ViewBag.SubTitle = "Aplicação teste criada em sala de aula";
+}
+
+<div>
+    <a asp-action="AddEdit" asp-controller="Categorias" class="btn btn-outline-secondary">Adicionar Categoria</a>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Data Cadastro</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+		<tr id="item-@item.Id">
+			<td>@item.Nome</td>
+			<td>@item.QtdeProdutos</td>
+			<td>@item.DataCadastro.ToShortDateString()</td>
+			<td>
+				<a class="btn btn-outline-success btn-sm"
+				   asp-action="AddEdit" asp-controller="Categorias"
+				   asp-route-id="@item.Id">Editar</a>
+				<button class="btn btn-outline-danger btn-sm" onclick="excluir(@item.Id, '@item.Nome', 'Categoria', '@Url.Action("Excluir", "Categorias")')">
+					Excluir
+				</button>
+			</td>
+		</tr>
+        }
+    </tbody>
+</table>
+
+<partial name="_modalDel">
+
+    @section scripts {
+        <script src="~/js/del-modal.js"></script>
+    }

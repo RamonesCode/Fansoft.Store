@@ -1,0 +1,47 @@
+﻿@model IEnumerable<UsuarioIndexVM>
+@{
+    ViewBag.Title = "Listagem de Usuários";
+    ViewBag.SubTitle = "Aplicação teste criada em sala de aula";
+}
+
+<div>
+    <a asp-action="AddEdit" asp-controller="Usuarios" class="btn btn-outline-secondary">Adicionar Usuário</a>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Genero</th>
+            <th>Data Cadastro</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+		<tr id="item-@item.Id">
+			<td>@item.Nome</td>
+			<td>@item.Perfis</td>
+			<td>@item.Email</td>
+			<td>@item.Genero</td>
+			<td>@item.DataCadastro.ToShortDateString()</td>
+			<td>
+				<a class="btn btn-outline-success btn-sm"
+				   asp-action="AddEdit" asp-controller="Usuarios"
+				   asp-route-id="@item.Id">Editar</a>
+				<button class="btn btn-outline-danger btn-sm" onclick="excluir(@item.Id, '@item.Nome', 'Usuário', '@Url.Action("Excluir", "Usuarios")')">
+					Excluir
+				</button>
+			</td>
+		</tr>
+        }
+    </tbody>
+</table>
+
+<partial name="_modalDel">
+
+@section scripts {
+    <script src="~/js/del-modal.js"></script>
+}

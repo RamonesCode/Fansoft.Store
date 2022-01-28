@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1development_1json__JsonSchema="https://json.schemastore.org/appsettings.json" /></VisualStudio></ProjectExtensions>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fansoft.Store.Data\Fansoft.Store.Data.csproj" />
+    <ProjectReference Include="..\Fansoft.Store.Domain\Fansoft.Store.Domain.csproj" />
+    <ProjectReference Include="..\Fansoft.Store.IoCDI\Fansoft.Store.IoCDI.csproj" />
+  </ItemGroup>
+
+</Project>
